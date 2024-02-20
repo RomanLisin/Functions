@@ -1,4 +1,4 @@
-//Arrays
+п»ї//Arrays
 #include<iostream>
 using namespace std;
 void FillRand(int arr[], const int n, int minRand=0, int maxRand=100);
@@ -44,19 +44,19 @@ void main()
 
 	cout << endl;
 
-	cout << "Сумма всех значений этих элементов составляет: " << SumArr(arr, n) << endl;
-	cout << "Среднее-арифметическое всех этих чисел равно: " << Avg(arr, n) << endl;
-	cout << "Минимальный элемент массива: " << minValueIn(arr, n) << endl;
-	cout << "Максимальный элемент массива: " << maxValueIn(arr, n) << endl<<endl;
-	cout << "Отсортированный массив: " << endl << endl;
+	cout << "РЎСѓРјРјР° РІСЃРµС… Р·РЅР°С‡РµРЅРёР№ СЌС‚РёС… СЌР»РµРјРµРЅС‚РѕРІ СЃРѕСЃС‚Р°РІР»СЏРµС‚: " << SumArr(arr, n) << endl;
+	cout << "РЎСЂРµРґРЅРµРµ-Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРµ РІСЃРµС… СЌС‚РёС… С‡РёСЃРµР» СЂР°РІРЅРѕ: " << Avg(arr, n) << endl;
+	cout << "РњРёРЅРёРјР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР°: " << minValueIn(arr, n) << endl;
+	cout << "РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР°: " << maxValueIn(arr, n) << endl<<endl;
+	cout << "РћС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ РјР°СЃСЃРёРІ: " << endl << endl;
 	SortArr(arr, n);
 	Print(arr, n);
 	cout << endl;
-	cout << "Сдвиг элементов массива влево" << endl << endl;
+	cout << "РЎРґРІРёРі СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР° РІР»РµРІРѕ" << endl << endl;
 	ShiftLeft(arr, n);
 	Print(arr, n);
 	cout << endl;
-	cout << "Сдвиг элементов массива вправо" << endl << endl;
+	cout << "РЎРґРІРёРі СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР° РІРїСЂР°РІРѕ" << endl << endl;
 	ShiftRight(arr, n);
 	Print(arr, n);
 	cout << endl << endl;
@@ -65,18 +65,18 @@ void main()
 
 void FillRand(int arr[], const int n, int minRand, int maxRand)
 {
-	//Заполнение массива случайными числами
+	//Р—Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІР° СЃР»СѓС‡Р°Р№РЅС‹РјРё С‡РёСЃР»Р°РјРё
 	for (int i = 0; i < n; i++)
 	{
 		arr[i] = minRand + rand() % (maxRand-minRand);
-		//Функция rand() возвращает псевдослучайное число в диапазоне от 0 до 32 767 (RAND_MAX)
+		//Р¤СѓРЅРєС†РёСЏ rand() РІРѕР·РІСЂР°С‰Р°РµС‚ РїСЃРµРІРґРѕСЃР»СѓС‡Р°Р№РЅРѕРµ С‡РёСЃР»Рѕ РІ РґРёР°РїР°Р·РѕРЅРµ РѕС‚ 0 РґРѕ 32 767 (RAND_MAX)
 	}
 
 }
 
 void Print(const int arr[], const int n)
 {
-	//Вывод массива на экран:
+	//Р’С‹РІРѕРґ РјР°СЃСЃРёРІР° РЅР° СЌРєСЂР°РЅ:
 	for (int i = 0; i < n; i++)
 	{
 		cout << arr[i] << "\t";
@@ -204,7 +204,7 @@ void SortArr(int arr[], const int N)
 				arr[i] ^= arr[i + 1];
 				arr[i + 1] = arr[i] ^ arr[i + 1];
 				arr[i] ^= arr[i + 1];
-				//temp = arr[i];              // работает с включенной переменной
+				//temp = arr[i];              // СЂР°Р±РѕС‚Р°РµС‚ СЃ РІРєР»СЋС‡РµРЅРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№
 				//arr[i] = arr[i + 1];
 				//arr[i + 1] = temp;
 			}
@@ -216,8 +216,8 @@ void SortArr(char arr[], const int N)
 	for (int j = 1; j < N; j++) {
 		for (int i = 1; i < N - j; i++) {
 			if (arr[i] > arr[i + 1]) {
-				arr[i] ^= arr[i + 1];              // если условие верно
-				arr[i + 1] = arr[i] ^ arr[i + 1]; // меняем местами элементы
+				arr[i] ^= arr[i + 1];              // РµСЃР»Рё СѓСЃР»РѕРІРёРµ РІРµСЂРЅРѕ
+				arr[i + 1] = arr[i] ^ arr[i + 1]; // РјРµРЅСЏРµРј РјРµСЃС‚Р°РјРё СЌР»РµРјРµРЅС‚С‹
 				arr[i] ^= arr[i + 1];
 			}
 		}
@@ -225,8 +225,8 @@ void SortArr(char arr[], const int N)
 }
 void SortArr(double arr[], const int N)
 {
-	double temp = 0;         // заменить местами через XOR для double не представляется
-	for (int j = 1; j < N; j++) {  //возможным, поэтому используем временную переменную
+	double temp = 0;         // Р·Р°РјРµРЅРёС‚СЊ РјРµСЃС‚Р°РјРё С‡РµСЂРµР· XOR РґР»СЏ double РЅРµ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚СЃСЏ
+	for (int j = 1; j < N; j++) {  //РІРѕР·РјРѕР¶РЅС‹Рј, РїРѕСЌС‚РѕРјСѓ РёСЃРїРѕР»СЊР·СѓРµРј РІСЂРµРјРµРЅРЅСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ
 		for (int i = 1; i < N - j; i++) {
 			if (arr[i] > arr[i + 1]) {
 				temp = arr[i];
@@ -254,9 +254,9 @@ void ShiftLeft(char arr[], const int N)
 }
 void ShiftLeft(double arr[], const int N)
 {
-	double temp = arr[0];					// через временную переменную работает
+	double temp = arr[0];					// С‡РµСЂРµР· РІСЂРµРјРµРЅРЅСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ СЂР°Р±РѕС‚Р°РµС‚
 	for (int i = 0; i < N - 1; i++) {
-		/*arr[i] ^= arr[i + 1];                    // побитово не работает
+		/*arr[i] ^= arr[i + 1];                    // РїРѕР±РёС‚РѕРІРѕ РЅРµ СЂР°Р±РѕС‚Р°РµС‚
 		arr[i + 1] = arr[i] ^ arr[i + 1];
 		arr[i] ^= arr[i + 1];*/
 		arr[i] = arr[i + 1];
@@ -271,8 +271,8 @@ void ShiftRight(int arr[], const int N)
 		arr[i - 1] = arr[i] ^ arr[i - 1];
 		arr[i] ^= arr[i - 1];
 	}
-	/*for (int i = N - 1; i > 0; i--) {            // так тоже работает с включенной
-		arr[i] = arr[i - 1];					   //  временной переменной
+	/*for (int i = N - 1; i > 0; i--) {            // С‚Р°Рє С‚РѕР¶Рµ СЂР°Р±РѕС‚Р°РµС‚ СЃ РІРєР»СЋС‡РµРЅРЅРѕР№
+		arr[i] = arr[i - 1];					   //  РІСЂРµРјРµРЅРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№
 	}
 	arr[0] = temp;*/
 }

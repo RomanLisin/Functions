@@ -1,4 +1,4 @@
-//Functions
+ï»¿//Functions
 #include<iostream>
 using namespace std;
 
@@ -19,7 +19,7 @@ void main() {
 	setlocale(LC_ALL, "");
 
 	int a, b;
-	cout << "Ââåäèòå äâà ÷èñëà ÷åðåç ïðîáåë: "; cin >> a >> b;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð²Ð° Ñ‡Ð¸ÑÐ»Ð° Ñ‡ÐµÑ€ÐµÐ· Ð¿Ñ€Ð¾Ð±ÐµÐ»: "; cin >> a >> b;
 	
 	int c = Sum(a, b);
 	cout << a << " + " << b << " = " << c << endl;
@@ -27,7 +27,7 @@ void main() {
 	cout << a << " * " << b << " = " << Prod(a, b) << endl;
 	cout << a << " / " << b << " = " << Quot(a, b) << endl;
 
-	cout << "×èñëî " << a << " â ñòåïåíè " << b << " = " << Power(a, b) << endl;
+	cout << "Ð§Ð¸ÑÐ»Ð¾ " << a << " Ð² ÑÑ‚ÐµÐ¿ÐµÐ½Ð¸ " << b << " = " << Power(a, b) << endl;
 	cout << endl << endl;
 
 	
@@ -42,23 +42,23 @@ int Sum(int a, int b)
 
 int Diff(int a, int b)
 {
-	//Difference - ðàçíîñòü
+	//Difference - Ñ€Ð°Ð·Ð½Ð¾ÑÑ‚ÑŒ
 	return a - b;
 }
 
 int Prod(int a, int b)
 {
-	//Product - ïðîèçâåäåíèå
+	//Product - Ð¿Ñ€Ð¾Ð¸Ð·Ð²ÐµÐ´ÐµÐ½Ð¸Ðµ
 	return a * b;
 }
 
 double Quot(int a, int b)
 {
-	//Quotient - ÷àñòíîå
+	//Quotient - Ñ‡Ð°ÑÑ‚Ð½Ð¾Ðµ
 	return (double)a / b;
 }
 
-double Power(double a, int n)  // a - îñíîâàíèå, n - ïîêàçàòåëü ñòåïåíè, Power âîçâîäèò ÷èñëî a â ñòåïåíü n
+double Power(double a, int n)  // a - Ð¾ÑÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ, n - Ð¿Ð¾ÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑŒ ÑÑ‚ÐµÐ¿ÐµÐ½Ð¸, Power Ð²Ð¾Ð·Ð²Ð¾Ð´Ð¸Ñ‚ Ñ‡Ð¸ÑÐ»Ð¾ a Ð² ÑÑ‚ÐµÐ¿ÐµÐ½ÑŒ n
 {
 	double N = 1;
 	if (n < 0)
