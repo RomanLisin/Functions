@@ -1,14 +1,19 @@
 ﻿//Arrays
 #include<iostream>
 using namespace std;
+
 void FillRand(int arr[], const int n, int minRand=0, int maxRand=100);
+
 void Print(const int arr[], const int n);
+void Print(const char arr[], const int n);
+void Print(const double arr[], const int n);
+
 
 int SumArr(const int arr[], const int N = 4);
 char SumArr(const char arr[], const int N = 4);
 double SumArr(const double arr[], const int N = 4);
 
-int Avg(const int arr[], const int N = 4);
+double Avg(const int arr[], const int N = 4);
 char Avg(const char arr[], const int N = 4);
 double Avg(const double arr[], const int N = 4);
 
@@ -36,30 +41,65 @@ void ShiftRight(double arr[], const int N = 4);
 void main()
 {
 	setlocale(LC_ALL, "");
-	const int n = 5;
-	int arr[n];
+	const int n = 4;
+	const int m = 2;
+	int arr[n], arrTwoDim[n][m];
+	char arrCh[] = { "dvab"};
+	double arrDoubl[] = { 8.4,4.9,3.8,6.23 };
+	
 
 	FillRand(arr, n);
+	cout << "Исходный массив:\n\n";
 	Print(arr, n);
-
-	cout << endl;
-
-	cout << "Сумма всех значений этих элементов составляет: " << SumArr(arr, n) << endl;
-	cout << "Среднее-арифметическое всех этих чисел равно: " << Avg(arr, n) << endl;
-	cout << "Минимальный элемент массива: " << minValueIn(arr, n) << endl;
-	cout << "Максимальный элемент массива: " << maxValueIn(arr, n) << endl<<endl;
-	cout << "Отсортированный массив: " << endl << endl;
+	cout << "\nСумма всех значений этих элементов составляет:\t" << SumArr(arr, n);
+	cout << "\nСреднее-арифметическое всех этих чисел равно:\t" << Avg(arr, n);
+	cout << "\nМинимальный элемент массива:\t" << minValueIn(arr, n);
+	cout << "\nМаксимальный элемент массива:\t" << maxValueIn(arr, n);
+	cout << "\nОтсортированный массив:\n\n";
 	SortArr(arr, n);
 	Print(arr, n);
-	cout << endl;
-	cout << "Сдвиг элементов массива влево" << endl << endl;
+	cout << "\nСдвиг элементов массива влево:\n\n";
 	ShiftLeft(arr, n);
 	Print(arr, n);
-	cout << endl;
-	cout << "Сдвиг элементов массива вправо" << endl << endl;
+	cout << "\nСдвиг элементов массива вправо:\n\n";
 	ShiftRight(arr, n);
 	Print(arr, n);
-	cout << endl << endl;
+
+	cout << "\nРабота функций с массивом типа char: ";
+	cout << "\nИсходный массив:\n\n";
+
+	Print(arrCh, n);
+
+	cout << "\nСумма элементов типа char:\t" << SumArr(arrCh, n) << endl;
+	cout  << "Среднее-арифметическое элементов char:\t" << Avg(arrCh, n) << endl;
+	cout << "Минимальный элемент массива:\t" << minValueIn(arrCh, n) << endl;
+	cout << "Максимальный элемент массива:\t" << maxValueIn(arrCh, n) << endl;
+	cout << "Отсортированный массив:\n\n";
+	SortArr(arrCh, n);
+	Print(arrCh, n);
+	cout << endl<< "Сдвиг элементов массива влево:\n\n";
+	ShiftLeft(arrCh, n);
+	Print(arrCh, n);
+	cout <<endl<< "Сдвиг элемнтов массива вправо:\n\n";
+	ShiftRight(arrCh, n);
+	Print(arrCh, n);
+	cout << endl<< "Работа фунций с массивом типа double:\n";
+	cout << "Исходный массив:\n\n";
+	Print(arrDoubl, n);
+	cout << endl << "Сумма элемнтов массива:\t" << SumArr(arrDoubl, n) << endl;
+	cout << "Среднее-арифметическое всех элементов массива:\t" << Avg(arrDoubl, n) << endl;
+	cout << "Минимальный элемент массива:\t" << minValueIn(arrDoubl, n) << endl;
+	cout << "Максимальный элемент массива:\t" << maxValueIn(arrDoubl, n) << endl;
+	cout << "Сортированный массив из вещественных чисел:\n\n";
+	SortArr(arrDoubl, n);
+	Print(arrDoubl, n);
+	cout << endl << "Сдвиг элементов массива влево:\n\n";
+	ShiftLeft(arrDoubl, n);
+	Print(arrDoubl, n);
+	cout << endl << "Сдвиг элементов массива вправо:\n\n";
+	ShiftRight(arrDoubl, n);
+	Print(arrDoubl, n);
+	
 }
 
 
@@ -84,6 +124,22 @@ void Print(const int arr[], const int n)
 	cout << endl;
 }
 
+void Print(const char arr[], const int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << arr[i]<< "\t";
+	}
+	cout << endl;
+}
+void Print(const double arr[], const int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << arr[i]<<"\t";
+	}
+	cout << endl;
+}
 int SumArr(const int arr[], const int N)
 {
 	int Sum = 0;
@@ -108,12 +164,12 @@ double SumArr(const double arr[], const int N)
 	}
 	return Sum;
 }
-int Avg(const int arr[], const int N)
+double Avg(const int arr[], const int N)
 {
-	int Avg = 0;
+	double Avg = 0;
 	for (int i = 0; i < N; i++)
 	{
-		Avg = SumArr(arr, N) / N;
+		Avg = (double)SumArr(arr, N) / N;
 	}
 	return Avg;
 }
@@ -214,7 +270,7 @@ void SortArr(int arr[], const int N)
 void SortArr(char arr[], const int N)
 {
 	for (int j = 1; j < N; j++) {
-		for (int i = 1; i < N - j; i++) {
+		for (int i = 0; i < N - j; i++) {
 			if (arr[i] > arr[i + 1]) {
 				arr[i] ^= arr[i + 1];              // если условие верно
 				arr[i + 1] = arr[i] ^ arr[i + 1]; // меняем местами элементы
@@ -227,7 +283,7 @@ void SortArr(double arr[], const int N)
 {
 	double temp = 0;         // заменить местами через XOR для double не представляется
 	for (int j = 1; j < N; j++) {  //возможным, поэтому используем временную переменную
-		for (int i = 1; i < N - j; i++) {
+		for (int i = 0; i < N - j; i++) {
 			if (arr[i] > arr[i + 1]) {
 				temp = arr[i];
 				arr[i] = arr[i + 1];
