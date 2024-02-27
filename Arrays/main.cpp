@@ -1,7 +1,7 @@
 ﻿//Arrays
 #include<iostream>
-const int S = 4;
 using namespace std;
+const int S = 4;
 
 void FillRand(int arr[], const int N, int minRand = 0, int maxRand = 100);
 void FillRand(int arr[][S], const int M , const int N, int minRand = 50, int maxRand = 100);
