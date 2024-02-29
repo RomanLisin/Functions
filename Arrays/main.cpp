@@ -46,14 +46,19 @@ double maxValueIn(double arr[][S], const int M, const int S);
 void SortArr(int arr[], const int N = 4);
 void SortArr(char arr[], const int N = 4);
 void SortArr(double arr[], const int N = 4);
+void SortArr(int arr[][S], const int M, const int S);
+void SortArr(char[][S], const int M, const int S);
+void SortArr(double[][S], const int M, const int S);
 
 void ShiftLeft(int arr[], const int N = 4);
 void ShiftLeft(char arr[], const int N = 4);
 void ShiftLeft(double arr[], const int N = 4);
+void ShiftLeft(int arr[][S], const int M, const int S);
 
 void ShiftRight(int arr[], const int N = 4);
 void ShiftRight(char arr[], const int N = 4);
 void ShiftRight(double arr[], const int N = 4);
+void ShiftRight(int arr[][S], const int M, const int S);
 
 
 void main()
@@ -64,8 +69,8 @@ void main()
 	int arr[N] , arrTwoDim[M][N];
 	char arrCh[] = { "dvab" };
 	double arrDoubl[] = { 8.4,4.9,3.8,6.23 };
-	char arrChTwoDim[][N] = { {'d','s','e','v'},{'k','o','p','l'} };
-	double arrTwoDimDoub[][N] = { {3.2,2.2, 3.9,6.4}, {3.8, 2.3, 4.5, 7.94} };
+	char arrChTwoDim[][N] = { {'d','s','e','v'},{'k','o','p','l'}};
+	double arrTwoDimDoub[][N] = { {3.2,2.2, 3.9,6.4}, {3.8, 2.3, 4.5, 7.94}};
 
 	FillRand(arr, N);
 	cout << "Исходный массив:\n\n";
@@ -127,8 +132,11 @@ void main()
 	cout << "Среднее-арифметическое всех элементов массива:\t" << Avg(arrTwoDim, M, N) << endl;
 	cout << "Минимальный элемент массива:\t" << minValueIn(arrTwoDim, M, N) << endl;
 	cout << "Максимальный элемент массива:\t" << maxValueIn(arrTwoDim, M, N) << endl;
+	cout << "Сортированный массив:\n\n"; SortArr(arrTwoDim, M, N); Print(arrTwoDim, M, N);
+	cout << "\n\nСдвиг элементов массива влево:\n\n"; ShiftLeft(arrTwoDim, M, N); Print(arrTwoDim, M, N);
+	cout << "\n\nСдвиг элементов массива вправо:\n\n"; ShiftRight(arrTwoDim, M, N); Print(arrTwoDim, M, N);
 
-	cout <<"\nДвумерный массив типа char:\n\n";
+	cout <<"\n\nДвумерный массив типа char:\n\n";
 
 	FillRand(arrChTwoDim, M, N);
 	Print(arrChTwoDim, M, N);
@@ -136,6 +144,7 @@ void main()
 	cout << "Среднее-арифметическое всех элементов массива:\t" << Avg(arrChTwoDim, M, N) << endl;
 	cout << "Минимальный элемент массива:\t" << minValueIn(arrChTwoDim, M, N) << endl;
 	cout << "Максимальный элемент массива:\t" << maxValueIn(arrChTwoDim, M, N) << endl;
+	cout << "Сортированный массив:\n\n"; SortArr(arrChTwoDim, M, N); Print(arrChTwoDim, M, N);
 
 	cout << "\nДвумерный массив типа double:\n\n";
 
@@ -145,6 +154,7 @@ void main()
 	cout << "Среднее-арифметическое всех элементов массива:\t" << Avg(arrTwoDimDoub, M, N) << endl;
 	cout << "Минимальный элемент массива:\t" << minValueIn(arrTwoDimDoub, M, N) << endl;
 	cout << "Максимальный элемент массива:\t" << maxValueIn(arrTwoDimDoub, M, N) << endl;
+	cout << "Сортированный массив:\n\n"; SortArr(arrTwoDimDoub, M, N); Print(arrTwoDimDoub, M, N);
 
 
 	
@@ -562,6 +572,92 @@ void SortArr(double arr[], const int N)
 		}
 	}
 }
+void SortArr(int arr[][S], const int M, const int S)
+{
+
+	for (int j = 0; j < S * M; j++)
+	{
+		for (int k = 0; k < M; k++)
+		{
+			for (int r = 0; r < S; r++) 
+			{
+				if (k + 1 == M && r + 1 == S) {   //условие проверяет, является ли текущий элемент последним в массивe, ограничивая выход за пределы массива
+					//Если это так, то оператор continue передает управление на следующую итерацию внешнего цикла, пропуская выполнение оставшейся части тела цикла
+					continue;  //используется для пропуска итерации цикла, когда текущий элемент является последним в массиве, что предотвращает выход за пределы массива
+				}
+				else if (r + 1 == S && arr[k][r] > arr[k + 1][0]) //проверяет, больше ли текущий элемент следующего элемента в следующей строке
+				{
+					int temp = arr[k][r];
+					arr[k][r] = arr[k + 1][0]; 
+					arr[k + 1][0] = temp;
+				}
+				else if (arr[k][r] > arr[k][r + 1])
+				{
+					int temp = arr[k][r];
+					arr[k][r] = arr[k][r + 1];
+					arr[k][r + 1] = temp;
+				}
+			}
+		}
+	}
+}
+
+void SortArr(char arr[][S], const int M, const int S) 
+{
+	for (int j = 0; j < S * M; j++)
+	{
+		for (int k = 0; k < M; k++)
+		{
+			for (int r = 0; r < S; r++)
+			{
+				if (k + 1 == M && r + 1 == S) {   //условие проверяет, является ли текущий элемент последним в массивe, ограничивая выход за пределы массива
+					//Если это так, то оператор continue передает управление на следующую итерацию внешнего цикла, пропуская выполнение оставшейся части тела цикла
+					continue;  //используется для пропуска итерации цикла, когда текущий элемент является последним в массиве, что предотвращает выход за пределы массива
+				}
+				else if (r + 1 == S && arr[k][r] > arr[k + 1][0]) //проверяет, больше ли текущий элемент следующего элемента в следующей строке
+				{
+					char temp = arr[k][r];
+					arr[k][r] = arr[k + 1][0];
+					arr[k + 1][0] = temp;
+				}
+				else if (arr[k][r] > arr[k][r + 1])
+				{
+					char temp = arr[k][r];
+					arr[k][r] = arr[k][r + 1];
+					arr[k][r + 1] = temp;
+				}
+			}
+		}
+	}
+}
+void SortArr(double arr[][S], const int M, const int S) 
+{
+	for (int j = 0; j < S * M; j++)
+	{
+		for (int k = 0; k < M; k++)
+		{
+			for (int r = 0; r < S; r++)
+			{
+				if (k + 1 == M && r + 1 == S) {   //условие проверяет, является ли текущий элемент последним в массивe, ограничивая выход за пределы массива
+					//Если это так, то оператор continue передает управление на следующую итерацию внешнего цикла, пропуская выполнение оставшейся части тела цикла
+					continue;  //используется для пропуска итерации цикла, когда текущий элемент является последним в массиве, что предотвращает выход за пределы массива
+				}
+				else if (r + 1 == S && arr[k][r] > arr[k + 1][0]) //проверяет, больше ли текущий элемент следующего элемента в следующей строке
+				{
+					double temp = arr[k][r];
+					arr[k][r] = arr[k + 1][0];
+					arr[k + 1][0] = temp;
+				}
+				else if (arr[k][r] > arr[k][r + 1])
+				{
+					double temp = arr[k][r];
+					arr[k][r] = arr[k][r + 1];
+					arr[k][r + 1] = temp;
+				}
+			}
+		}
+	}
+}
 void ShiftLeft(int arr[], const int N)
 {
 	for (int i = 0; i < N - 1; i++) {
@@ -588,6 +684,31 @@ void ShiftLeft(double arr[], const int N)
 		arr[i] = arr[i + 1];
 	}
 	arr[N - 1] = temp;
+}
+void ShiftLeft(int arr[][S], const int M, const int S)
+{
+	const int SHIFT = 1;
+	for (int j = 0; j < SHIFT; j++)
+	{
+		int temp = arr[0][0];
+		for (int k = 0; k < M; k++)
+		{
+			for (int r = 0; r < S; r++)
+			{
+				if (k + 1 == M && r+1 == S)
+				{
+					arr[k][r] = temp;
+					continue;
+				}
+				else if (r+1 == S)
+				{
+					arr[k][r] = arr[k][r + 1];
+					arr[k][r + 1] = arr[k + 1][0];
+				}
+				else arr[k][r] = arr[k][r+1];
+			}
+		}
+	}
 }
 void ShiftRight(int arr[], const int N)
 {
@@ -617,4 +738,25 @@ void ShiftRight(double arr[], const int N)
 		arr[i] = arr[i - 1];
 	}
 	arr[0] = temp;
+}
+void ShiftRight(int arr[][S], const int M, const int S)
+{
+	const int SHIFT = 2;
+	for (int j = 0; j < SHIFT; j++)
+	{	
+		int temp;
+		for (int k = M-1; k >= 0; k--)
+		{
+			for (int r = S - 1; r >= 0; r--)
+			{
+				if (k + 1 == M && r + 1 == S)
+				{
+					temp = arr[k][r];
+				}
+				else if (r == 0) arr[k][r] = arr[k - 1][r + S - 1];
+				arr[k][r] = arr[k][r - 1];
+			}
+		}
+		arr[0][0] = temp;
+	}
 }
