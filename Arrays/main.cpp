@@ -54,11 +54,15 @@ void ShiftLeft(int arr[], const int N = 4);
 void ShiftLeft(char arr[], const int N = 4);
 void ShiftLeft(double arr[], const int N = 4);
 void ShiftLeft(int arr[][S], const int M, const int S);
+void ShiftLeft(char arr[][S], const int M, const int S);
+void ShiftLeft(double arr[][S], const int M, const int S);
 
 void ShiftRight(int arr[], const int N = 4);
 void ShiftRight(char arr[], const int N = 4);
 void ShiftRight(double arr[], const int N = 4);
 void ShiftRight(int arr[][S], const int M, const int S);
+void ShiftRight(char arr[][S], const int M, const int S);
+void ShiftRight(double arr[][S], const int M, const int S);
 
 
 void main()
@@ -145,6 +149,8 @@ void main()
 	cout << "Минимальный элемент массива:\t" << minValueIn(arrChTwoDim, M, N) << endl;
 	cout << "Максимальный элемент массива:\t" << maxValueIn(arrChTwoDim, M, N) << endl;
 	cout << "Сортированный массив:\n\n"; SortArr(arrChTwoDim, M, N); Print(arrChTwoDim, M, N);
+	cout << "\n\nСдвиг элементов массива  типа char влево:\n\n"; ShiftLeft(arrChTwoDim, M, N); Print(arrChTwoDim, M, N);
+	cout << "\n\nСдвиг элементов массива типа char вправо:\n\n"; ShiftRight(arrChTwoDim, M, N); Print(arrChTwoDim, M, N);
 
 	cout << "\nДвумерный массив типа double:\n\n";
 
@@ -155,6 +161,8 @@ void main()
 	cout << "Минимальный элемент массива:\t" << minValueIn(arrTwoDimDoub, M, N) << endl;
 	cout << "Максимальный элемент массива:\t" << maxValueIn(arrTwoDimDoub, M, N) << endl;
 	cout << "Сортированный массив:\n\n"; SortArr(arrTwoDimDoub, M, N); Print(arrTwoDimDoub, M, N);
+	cout << "\n\nСдвиг элементов массива  типа double влево:\n\n"; ShiftLeft(arrTwoDimDoub, M, N); Print(arrTwoDimDoub, M, N);
+	cout << "\n\nСдвиг элементов массива типа double вправо:\n\n"; ShiftRight(arrTwoDimDoub, M, N); Print(arrTwoDimDoub, M, N);
 
 
 	
@@ -710,6 +718,56 @@ void ShiftLeft(int arr[][S], const int M, const int S)
 		}
 	}
 }
+void ShiftLeft(char arr[][S], const int M, const int S)
+{
+	const int SHIFT = 1;
+	for (int j = 0; j < SHIFT; j++)
+	{
+		char temp = arr[0][0];
+		for (int k = 0; k < M; k++)
+		{
+			for (int r = 0; r < S; r++)
+			{
+				if (k + 1 == M && r + 1 == S)
+				{
+					arr[k][r] = temp;
+					continue;
+				}
+				else if (r + 1 == S)
+				{
+					arr[k][r] = arr[k][r + 1];
+					arr[k][r + 1] = arr[k + 1][0];
+				}
+				else arr[k][r] = arr[k][r + 1];
+			}
+		}
+	}
+}
+void ShiftLeft(double arr[][S], const int M, const int S)
+{
+	const int SHIFT = 1;
+	for (int j = 0; j < SHIFT; j++)
+	{
+		double temp = arr[0][0];
+		for (int k = 0; k < M; k++)
+		{
+			for (int r = 0; r < S; r++)
+			{
+				if (k + 1 == M && r + 1 == S)
+				{
+					arr[k][r] = temp;
+					continue;
+				}
+				else if (r + 1 == S)
+				{
+					arr[k][r] = arr[k][r + 1];
+					arr[k][r + 1] = arr[k + 1][0];
+				}
+				else arr[k][r] = arr[k][r + 1];
+			}
+		}
+	}
+}
 void ShiftRight(int arr[], const int N)
 {
 	/*int temp = arr[N - 1];*/
@@ -746,6 +804,48 @@ void ShiftRight(int arr[][S], const int M, const int S)
 	{	
 		int temp;
 		for (int k = M-1; k >= 0; k--)
+		{
+			for (int r = S - 1; r >= 0; r--)
+			{
+				if (k + 1 == M && r + 1 == S)
+				{
+					temp = arr[k][r];
+				}
+				else if (r == 0) arr[k][r] = arr[k - 1][r + S - 1];
+				arr[k][r] = arr[k][r - 1];
+			}
+		}
+		arr[0][0] = temp;
+	}
+}
+void ShiftRight(char arr[][S], const int M, const int S)
+{
+	const int SHIFT = 2;
+	for (int j = 0; j < SHIFT; j++)
+	{
+		char temp;
+		for (int k = M - 1; k >= 0; k--)
+		{
+			for (int r = S - 1; r >= 0; r--)
+			{
+				if (k + 1 == M && r + 1 == S)
+				{
+					temp = arr[k][r];
+				}
+				else if (r == 0) arr[k][r] = arr[k - 1][r + S - 1];
+				arr[k][r] = arr[k][r - 1];
+			}
+		}
+		arr[0][0] = temp;
+	}
+}
+void ShiftRight(double arr[][S], const int M, const int S)
+{
+	const int SHIFT = 2;
+	for (int j = 0; j < SHIFT; j++)
+	{
+		double temp;
+		for (int k = M - 1; k >= 0; k--)
 		{
 			for (int r = S - 1; r >= 0; r--)
 			{
