@@ -1,12 +1,21 @@
 ﻿//Arrays
 #include<iostream>
 using namespace std;
+
+#define delimetr "\n--------------------------------------------------------------\n"
+#define tab "\t"
+
 const int S = 4;
 
+const int ROWS = 3;
+const int COLS = 5;
+
 void FillRand(int arr[], const int N, int minRand = 0, int maxRand = 100);
+void FillRand(double arr[], const int N, int minRand = 0, int maxRand = 100);
 void FillRand(int arr[][S], const int M , const int N, int minRand = 50, int maxRand = 100);
 void FillRand(char arr[][S], const int m, const int n, char minRand = 50, char maxRand = 100);
 void FillRand(double arr[][S], const int M, const int N, int minRand = 50, int maxRand = 100);
+void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS, int minRand = 0, int maxRand = 100);
 
 void Print(const int arr[], const int N);
 void Print(const char arr[], const int N);
@@ -14,6 +23,7 @@ void Print(const double arr[], const int N);
 void Print(int arr[][S], const int M, const int S);
 void Print(char arr[][S], const int M, const int S);
 void Print(double arr[][S], const int M, const int S);
+void Print(const int arr[ROWS][COLS], const int ROWS, const int COLS);
 
 int SumArr(const int arr[], const int N = 4);
 char SumArr(const char arr[], const int N = 4);
@@ -70,15 +80,29 @@ void main()
 	setlocale(LC_ALL, "");
 	const int N = 4;
 	const int M = 2;
-	int arr[N] , arrTwoDim[M][N];
+	int arr[N], arrTwoDim[M][N];
 	char arrCh[] = { "dvab" };
-	double arrDoubl[] = { 8.4,4.9,3.8,6.23 };
-	char arrChTwoDim[][N] = { {'d','s','e','v'},{'k','o','p','l'}};
-	double arrTwoDimDoub[][N] = { {3.2,2.2, 3.9,6.4}, {3.8, 2.3, 4.5, 7.94}};
+	double arrDoubl[N]; // = { 8.4,4.9,3.8,6.23 };
+	char arrChTwoDim[][N] = { {'d','s','e','v'},{'k','o','p','l'} };
+	double arrTwoDimDoub[M][N];// = { {3.2,2.2, 3.9,6.4}, {3.8, 2.3, 4.5, 7.94} };
+
+	const int m = 8;
+	double brr[m];
+	
+	int i_arr_2[ROWS][COLS];
+
+	cout << delimetr;
+	
+	FillRand(i_arr_2, ROWS, COLS);
+	Print(i_arr_2, ROWS, COLS);
 
 	FillRand(arr, N);
-	cout << "Исходный массив:\n\n";
+	cout << "\nИсходный массив:\n\n";
 	Print(arr, N);
+	FillRand(brr, m);
+	cout << delimetr << endl;
+	Print(brr, m);
+	cout << delimetr << endl;
 	cout << "\nСумма всех значений этих элементов составляет:\t" << SumArr(arr, N);
 	cout << "\nСреднее-арифметическое всех этих чисел равно:\t" << Avg(arr, N);
 	cout << "\nМинимальный элемент массива:\t" << minValueIn(arr, N);
@@ -113,6 +137,7 @@ void main()
 	Print(arrCh, N);
 	cout << endl << "Работа фунций с массивом типа double:\n";
 	cout << "Исходный массив:\n\n";
+	FillRand(arrDoubl, N);
 	Print(arrDoubl, N);
 	cout << endl << "Сумма элемнтов массива:\t" << SumArr(arrDoubl, N) << endl;
 	cout << "Среднее-арифметическое всех элементов массива:\t" << Avg(arrDoubl, N) << endl;
@@ -180,6 +205,20 @@ void FillRand(int arr[], const int N, int minRand, int maxRand)
 	}
 
 }
+void FillRand(double arr[], const int N, int minRand, int maxRand)
+{
+	minRand *= 100;
+	maxRand *= 100;
+	//Заполнение массива случайными числами типа double
+	for (int i = 0; i < N; i++)
+	{
+		arr[i] = minRand + rand() % (maxRand - minRand);
+		//Функция rand() возвращает псевдослучайное число в диапазоне от 0 до 32 767 (RAND_MAX)
+		arr[i] /= 100;
+	}
+
+}
+
 void FillRand(int arr[][S],const int M, const int S, int minRand, int maxRand)
 {
 	for (int i = 0; i < M; i++)
@@ -207,6 +246,16 @@ void FillRand(double arr[][S], const int M, const int S, int minRand, int maxRan
 		for (int j = 0; j < S; j++)
 		{
 			arr[i][j] = (double)(minRand + rand() % (maxRand - minRand))/4;
+		}
+	}
+}
+void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS, int minRand, int maxRand)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			arr[i][j] =minRand + rand() % (maxRand-minRand);
 		}
 	}
 }
@@ -265,6 +314,17 @@ void Print(double arr[][S], const int M, const int S)
 		for (int j = 0; j < S; j++)
 		{
 			cout << arr[i][j] << "\t";
+		}
+		cout << endl;
+	}
+}
+void Print(const int arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			cout << arr[i][j] << tab;
 		}
 		cout << endl;
 	}
