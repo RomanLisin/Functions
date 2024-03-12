@@ -10,10 +10,12 @@ template <typename T> void Print(const T arr[], const int N)
 	}
 	cout << endl;
 }
-template <typename T> T Sum(const T arr[], const int S)
+template <typename T> void Sum(const T arr[], const int S)
 {
 	T sum = T(); // локальна€ переменна€ типа “ ,  T()  значение по умолчанию дл€ шаблонного типа данных эдентично T sum = 0
 	for (int i = 0; i < S; i++)sum += arr[i];
 
 	return sum;
 }
+
+
